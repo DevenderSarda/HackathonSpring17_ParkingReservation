@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta t="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+
+
+    <style>
+        #map-canvas {
+            height: 600px;
+            /*width: 60%;
+            margin-left: 20%;
+            margin-right: 20%;*/
+        }
+        .form-control
+        {
+            width: auto;
+        }
+        .btn-direction{
+            font-size: 16px;
+            line-height: 2.1;
+            padding: 0px;
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="home" class="wrapp">
+    <div class="col-md-12" style="text-align: center; padding: 0px; !important;">
+        <!--<input googlesourceplace ng-model="homeController.fromPlace" type="text" class="form-control col-md-3" placeholder="Enter Parking Location" id="startlocation"/>
+        <div class='col-md-2'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input ng-model="homeController.fromTime" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-2'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input ng-model="homeController.toTime" type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+            <button id="btnDirection" class="col-md-2 btn btn-success btn-sm btn-direction" ng-click="getLocations()">
+            Get Parking Locations
+        </button>-->
+        <div id="header" style="margin: 0%; padding-top: 15px; padding-bottom: 15px;" class="countdown-timer-w3laits col-md-12">
+            <div  class="col-md-8 col-md-offset-2 starts">
+                <h2 style="letter-spacing: 0px; font-weight: bolder !important;">GO PARKING</h2>
+                <i style="font-weight: 500 !important; margin-left: 250px; color: white; font-style: italic;">You made the right choice!</i>
+            </div>
+            <div  class="col-md-2" class="dropdown">
+                <img  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="" id="login_user_image" ng-click="homeController.showSignOut()" style="border-radius: 50%; height: 60px; width: 70px; margin-right: 30px;">
+                <ul  class="dropdown-menu btn" style="margin-left: 20px; background-color: rgba(44, 138, 236, 0.882353);" aria-labelledby="login_user_image">
+                    <li ng-click="homeController.goToProfile()" style="padding-left: 5px; padding-bottom: 5px; color: white; font-size: larger; font-weight: 600; border-bottom: 2px solid darkslategray;">My Account</li>
+                    <li ng-click="homeController.signOut()" style="padding-left: 5px; padding-top: 5px; padding-bottom: 5px; color: white; font-size: larger; font-weight: 600;">Sign out</li>
+                </ul>
+            </div>
+        </div>
+        <!--//header-->
+
+        <!--newsletter-->
+        <div class="newsletter w3l-agile">
+            <div class="email">
+<div class="inner-addon left-addon" style="position: static !important;">
+
+                    <i class="glyphicon glyphicon-map-marker"></i>
+
+                    <input googlesourceplace ng-model="homeController.fromPlace" placeholder="Search Address, Landmark or Neighborhood" name="search" class="mail" type="text" required="" id="city"/>
+
+                    <input type="button" value="Find Parking" ng-click="getLocations()">
+                    <i class="glyphicon glyphicon-search"></i>
+</div>
+            </div>
+        </div>
+        <!--//newsletter-->
+
+        <input type="hidden" id="fromcityLat" name="fromcityLat" />
+        <input type="hidden" id="fromcityLng" name="fromcityLng" />
+    </div>
+<!--<div class="col-md-12">
+    <div class="col-md-7" id="location_list" ng-click="fillSelectedLocation($event)">
+
+    </div>
+    <div class="col-md-5" id="map-canvas" style="display: block;"></div>
+
+</div>-->
+
+
+    <div id="data_container" style="visibility: hidden">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li style="left: 40%;" role="presentation" class="active"><a style="font-weight: bold; color: white" aria-controls="mapview" role="tab" data-target="#mapview" data-toggle="tab">Map View</a></li>
+            <li style="left: 40%;" role="presentation"><a style="font-weight: bold; color: white" aria-controls="locationlist" role="tab" data-target="#locationlist" data-toggle="tab">List View</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="mapview"><div id="map-canvas" style="display: block;"></div></div>
+            <div role="tabpanel" class="tab-pane" id="locationlist"> <div id="location_list" ng-click="homeController.showParkingArea($event, 'list')"></div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <!--<div class="col-md-12">
+        <table style="width:100%">
+            <tr ng-repeat="spot in homeController.spots track by $index" ng-switch on="$index % 3">
+                <td ng-switch-when="0">
+                    <span ng-click="homeController.reserveParkingSpot(homeController.spots[$index])" ng-class="{{homeController.spots[$index]}}" class="fa fa-car"></span>
+                </td>
+                <td ng-switch-when="0">
+        <span ng-show="homeController.spots[$index+1]">
+         <span ng-click="homeController.reserveParkingSpot(homeController.spots[$index+1])" ng-class="{{homeController.spots[$index+1]}}" class="fa fa-car"></span>
+        </span>
+                </td>
+                <td ng-switch-when="0">
+        <span ng-show="homeController.spots[$index+2]">
+          <span ng-click="homeController.reserveParkingSpot(homeController.spots[$index+2])" ng-class="{{homeController.spots[$index+2]}}" class="fa fa-car"></span>
+        </span>
+                </td>
+            </tr>
+        </table>
+
+    </div>-->
+
+
+
+
+    <div class="modal fade parking-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Parking Layout - You are almost done ! Select a spot you prefer</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="whole" style="background-color:#696969	">
+
+                        <div id="layout" style="padding-left: 70px;" ng-click="homeController.reserveParkingSpot($event)">
+                        </div>
+                        <div id="legend" style="margin-top: 80px; padding-left: 70px; margin-bottom: 100px;">
+                            <div style="float:left;margin-left: 5px; margin-top: 30px;">
+                                <span class="sign" style="padding-top: 30px;">Exit</span>
+                            </div>
+                            <div style="margin-left: 720px; margin-top: 30px !important;">
+                                <span class="sign" style="padding-top: 50px;">Entry</span>
+                            </div>
+                            <div style="float: left;margin-left: 160px; margin-top: -40px;">
+                                <i class="fa fa-car" style="font-size: 40px;color: #ff0000; margin-left: 8px;"></i></br>
+                                <span style="color: white"> Reserved</span></div>
+
+                            <div style="margin-left: 400px; margin-top: -40px;"><i class="fa fa-car" style="font-size: 40px;color:#00ff00; margin-left: 8px;"></i></br>
+                                <span style="color: white"> Available</span></div>
+
+                        </div>
+                        <div id="layout2" style="padding-left: 70px;" style="margin-top: 100px" ng-click="homeController.reserveParkingSpot($event)">
+                        </div>
+                    </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+
+    <div class="modal fade reserve-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Reserve Parking Spot</h4>
+                </div>
+                <div style="height:auto; display: inline-block;" class="modal-body">
+                    <div class="col-md-12"><div class="col-md-6">LocationName:</div><div class="col-md-6">{{homeController.selectedParkingDetails.location_name}}</div></div>
+                    <div class="col-md-12"><div class="col-md-6">Location Address:</div><div class="col-md-6">{{homeController.selectedParkingDetails.address}}</div></div>
+                    <div class="col-md-12"><div class="col-md-6">Available Parking Spots:</div><div class="col-md-6">{{homeController.selectedParkingDetails.available_spots}}</div></div>
+                    <div class="col-md-12"><div class="col-md-6">Reserved Parking Spots:</div><div class="col-md-6">{{homeController.selectedParkingDetails.reservation}}</div></div>
+                    <div class="col-md-12"><div class="col-md-6">Price:</div><div class="col-md-6">{{homeController.selectedParkingDetails.price_formatted}}/hour</div></div>
+                    <div class='col-md-12'>
+                        <div class="col-md-6">Reservation From Date and Time</div>
+                        <div class="col-md-6 form-group">
+                            <div class='input-group date' id='datetimepicker3'>
+                                <input ng-model="homeController.fromTime" type='text' class="form-control" />
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-md-12'>
+                        <div class="col-md-6">Reservation To Date and Time</div>
+                        <div class="col-md-6 form-group">
+                            <div class='input-group date' id='datetimepicker4'>
+                                <input ng-model="homeController.toTime" type='text' class="form-control" />
+                                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12"><div class="col-md-6">Vehicle Registration Number:</div><input id="registration" type="text" placeholder="Enter Registration Number" class="col-md-6 form-control" style="margin-left: 15px;"></input></div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" ng-click="homeController.insertReservation()">Reserve</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <!--<link rel="stylesheet" href="Libraries/css/bootstrap.css">
+    <link rel="stylesheet" href="Libraries/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSS/LoginStyle.css">-->
+
+</head>
+<body>
+<div class="login_body" style="height: 100%;">
+    <div class="row" style="margin-right: 0px !important; margin-left: 0px !important;">
+        <div class="col-md-4 col-md-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: lightgray">
+                    <span class="glyphicon glyphicon-lock"></span> Login Here</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <!--<img src="" id="user_picture" />-->
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-3 control-label" style="font-weight: bold">
+                                Email</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" ng-blur="loginController.showUserPicture()" ng-model="loginController.login_email" id="inputEmail3" placeholder="Email" required>
+                            </div>
+                        </div>
+                        <div id="welcome_image_container" class="form-group">
+                            <label for="user_welcome_image" class="col-sm-3 control-label">
+                                Welcome </label>
+                            <div class="col-sm-9">
+                                <img src="" height="200" id="user_welcome_image" alt="Image preview..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-3 control-label" style="font-weight: bold">
+                                Password</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" ng-model="loginController.login_password" id="inputPassword3" placeholder="Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"/>
+                                        Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group last">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" ng-click="loginController.signIn()" class="btn btn-success btn-sm">
+                                    Sign in</button>
+                                <button type="reset" class="btn btn-default btn-sm">
+                                    Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="panel-footer" style="text-align: center;font-weight: bold;" >
+                 Not Registered? <a data-toggle="modal" data-target=".register-modal" style="color: #3B5998">Register here</a> (or) <a href="#" onclick="FBlogin()" class="fa fa-facebook social"></a>
+                      <a href="#" class="fa fa-google social"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade register-modal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel" style="font-weight: bold">Not sure where to park your car? Join Us Here</h4>
+            </div>
+            <div class="modal-body">
+                        <div class="main-login main-center">
+                            <h5 style="text-decoration-style: solid"></h5>
+                            <form class="" method="post" action="#">
+
+                                <div class="form-group">
+                                    <label for="name" class="cols-sm-2 control-label" style="font-weight: bold">Your Name</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                            <input type="text" class="form-control" name="name" id="name" ng-model="loginController.register_Name"  placeholder="Enter your Name" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email" class="cols-sm-2 control-label" style="font-weight: bold">Your Email</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                            <input type="email" class="form-control" name="email" id="email" ng-model="loginController.register_Email"  placeholder="Enter your Email" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="mobileno" class="cols-sm-2 control-label" style="font-weight: bold">Mobile Number</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-mobile fa" aria-hidden="true"></i></span>
+                                            <input type="text" class="form-control" name="mobileno" id="mobileno" ng-model="loginController.register_MobileNo" placeholder="Enter your Mobile Number" ng-model="mobileno" only-digits/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="picture" class="cols-sm-2 control-label" style="font-weight: bold">Upload Picture</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-file-image-o" aria-hidden="true"></i></span>
+                                            <input type="file" class="form-control" ng-model="loginController.image" name="picture" id="picture"  onchange="previewFile()"><br>
+                                            <img src="" height="200" id="user_image" alt="Image preview..." />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password" class="cols-sm-2 control-label" style="font-weight: bold">Password</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control" name="password" id="password" ng-model="loginController.register_Password"  placeholder="Enter your Password" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="confirm" class="cols-sm-2 control-label" style="font-weight: bold">Confirm Password</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control" name="confirm" id="confirm" ng-model="loginController.register_ConfirmPassword"  placeholder="Confirm your Password" required/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <button  type="button" id="button" ng-click="loginController.registerUser()" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">X Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--<script src="Libraries/js/jquery-3.1.1.min.js"></script>
+<script src="Libraries/js/bootstrap.min.js"></script>
+<script src="Libraries/js/angular.min.js"></script>
+<script src="Libraries/js/angular-route.min.js"></script>
+<script src="JS/app.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,164 @@
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+    <link href="css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
+    <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Accessible Profile Widget Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="js/jquery.min.js"></script>
+    <script>$(document).ready(function(c) {
+        $('.alert-close').on('click', function(c){
+            $('.main-agile').fadeOut('slow', function(c){
+                $('.main-agile').remove();
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+<div class="col-md-12">
+    <button style="margin-top: 30px;" class="col-md-1 btn btn-info btn-md" ng-click="goToHome()">
+        <span class="glyphicon glyphicon-home"></span> Home
+    </button>
+<h1 class="col-md-10" style="margin: 0px; text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px; letter-spacing: 0px; font-weight: bold !important; font-size: xx-large !important;">User Account Details</h1>
+    <button style="margin-top: 30px;" class="col-md-1 btn btn-info btn-md" ng-click="goToLogin()">
+        <span class="glyphicon glyphicon-off"></span> Logout
+    </button>
+</div>
+<div>
+    <div class="main-agileits" style="float:left;">
+        <h2 style="text-align: center; font-size: x-large; font-weight: bold; color: white;">Account Details</h2>
+        <div class="right-wthree">
+            <!--<img src="images/woman-1254453_640.jpg" alt="image" />-->
+            <img  ng-src="{{profileController.userData.Picture}}" alt="image" />
+            <h2>{{profileController.userData.name}}</h2>
+
+            <p></p>
+        </div>
+        <div class="left-w3ls">
+            <ul class="address">
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>NAME</b></li>
+                        <li>:{{profileController.userData.name}}</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>E-MAIL </b></li>
+                        <li>:{{profileController.userData.email}}</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>PHONE </b></li>
+                        <li>:{{profileController.userData.MobileNo}}</li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+            <div class="" style="margin-top: 170px">
+                <button style="float: right;" class="btn btn-info btn-lg" ng-click="removeProfile()">
+                    <span class="glyphicon glyphicon-trash"></span> Delete Account
+                </button>
+            </div>
+
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+
+    <div class="main-agileits" style="float:right;" >
+        <h2 style="text-align: center; font-size: x-large; font-weight: bold; color: white">Reservation Details</h2>
+        <div id="reservation_ul"  class="left-wthree">
+            <ul class="address">
+
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>NAME</b></li>
+                        <li>:{{profileController.profileData.name}}</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>E-MAIL </b></li>
+                        <li>:{{profileController.profileData.email}}</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>LOCATION </b></li>
+                        <li>: {{profileController.profileData.LocationName}}</li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="address-text">
+                        <li><b>FROM TIME</b></li>
+                        <li>: {{profileController.profileData.FromDateTime}}</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="address-text">
+                        <li><b>TO TIME</b></li>
+                        <li>: {{profileController.profileData.ToDateTime}}</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="address-text">
+                        <li><b>VEHICLE NUMBER</b></li>
+                        <li>: {{profileController.profileData.VehicleRegistrationNo}}</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="address-text">
+                        <li><b>PRICE</b></li>
+                        <li>: {{profileController.profileData.Price}}/hour</li>
+                    </ul>
+                </li>
+            </ul>
+
+
+
+            <div class="">
+
+                <button style="float: right;" class="btn btn-info btn-lg" ng-click="cancelProfile()" >
+                    <span class="glyphicon glyphicon-trash"></span> Cancel Reservation
+                </button>
+            </div>
+
+        </div>
+
+        <div id="reservation_nodata" style="display: none; text-align: center; padding-top: 25px; color: white;">No Reservations. Please make a reservation by clicking on Home</div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+</body>
+</html>
