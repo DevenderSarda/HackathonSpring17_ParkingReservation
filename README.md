@@ -1,6 +1,8 @@
 # HackathonSpring17_ParkingReservation
 
-GO Parking is a online parking reservation web application developed on MEAN stack. It helps users to find the right parking area and reserve it. 
+GO Parking is an online parking reservation web application developed on MEAN stack. It helps users to find the right parking area and reserve it.
+
+Application Demo: https://youtu.be/eR9XB1qSB68
 
 -->The application provides user registration form for user to sign into the application. User can take the benefit of Facebook or Google O Auth to validate himself/herself into the application. 
 
